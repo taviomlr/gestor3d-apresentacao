@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manual do Usuário — Gestor3D</title>
+<style>
+  :root {
+    --bg-dark:   #1E1B2E;
+    --bg-panel:  #2D2B45;
+    --bg-card:   #3D3A5C;
+    --primary:   #7B4FD4;
+    --secondary: #3B82F6;
+    --accent:    #5BB8F5;
+    --text:      #F0EEFF;
+    --muted:     #A89EC4;
+    --success:   #22C55E;
+    --warning:   #F59E0B;
+    --danger:    #EF4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-dark);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── CAPA ── */
+  .capa {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #1E1B2E 0%, #2D2B45 50%, #1E1B2E 100%);
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .capa::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+  }
+  .capa-logo {
+    width: 160px;
+    margin-bottom: 32px;
+    filter: drop-shadow(0 0 24px rgba(123,79,212,0.5));
+  }
+  .capa h1 {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .capa .subtitulo {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .capa .versao {
+    display: inline-block;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-panel);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 60px;
+  }
+  .capa-info {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .capa-badge {
+    background: var(--bg-panel);
+    border-radius: 12px;
+    padding: 18px 28px;
+    text-align: center;
+    border: 1px solid var(--bg-card);
+  }
+  .capa-badge .num { font-size: 28px; font-weight: 800; color: var(--primary); }
+  .capa-badge .desc { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── SUMÁRIO ── */
+  .sumario {
+    background: var(--bg-panel);
+    padding: 48px 60px;
+    border-bottom: 1px solid var(--bg-card);
+  }
+  .sumario h2 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sumario h2::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .sumario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+  }
+  .sumario-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+  }
+  .sumario-item:hover {
+    background: #4A3F7A;
+    border-color: var(--primary);
+  }
+  .sumario-proximo {
+    border-color: rgba(245,158,11,0.3);
+    background: rgba(245,158,11,0.06);
+  }
+  .sumario-proximo:hover {
+    background: rgba(245,158,11,0.15);
+    border-color: var(--warning);
+  }
+  .sumario-item .num {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sumario-item .icone { font-size: 16px; flex-shrink: 0; }
+
+  /* ── SEÇÃO ── */
+  .secao-titulo {
+    background: var(--bg-panel);
+    padding: 20px 60px;
+    border-bottom: 1px solid var(--bg-card);
+    border-top: 3px solid var(--primary);
+    margin-top: 48px;
+  }
+  .secao-titulo h2 {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── MÓDULO ── */
+  .modulo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--bg-card);
+    align-items: start;
+  }
+  .modulo:nth-child(even) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .modulo:nth-child(even) .modulo-img  { order: -1; }
+  .modulo:nth-child(even) .modulo-desc { order: 1; }
+
+  .modulo-desc {
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: var(--bg-dark);
+  }
+  .modulo-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .modulo-num {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .modulo-icone { font-size: 24px; }
+  .modulo-titulo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .modulo-sub {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .desc-bloco { margin-bottom: 20px; }
+  .desc-bloco p {
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .desc-bloco h4 {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+  .funcionalidades {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .func-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .func-item::before {
+    content: '›';
+    color: var(--primary);
+    font-size: 16px;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .tag {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-panel);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .tag.verde { border-color: var(--success); color: var(--success); background: rgba(34,197,94,0.1); }
+  .tag.roxo  { border-color: var(--primary); color: var(--primary); background: rgba(123,79,212,0.1); }
+  .tag.azul  { border-color: var(--secondary); color: var(--secondary); background: rgba(59,130,246,0.1); }
+  .tag.laranja { border-color: var(--warning); color: var(--warning); background: rgba(245,158,11,0.1); }
+
+  .modulo-img {
+    background: var(--bg-panel);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-left: 1px solid var(--bg-card);
+    position: relative;
+    padding: 20px;
+  }
+  .modulo:nth-child(even) .modulo-img {
+    border-left: none;
+    border-right: 1px solid var(--bg-card);
+  }
+  .modulo-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+  }
+  .modulo-img:hover img { transform: scale(1.02); }
+  .modulo-img .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 40px;
+    text-align: center;
+  }
+  .modulo-img .placeholder .icon { font-size: 48px; }
+
+  /* ── PRÓXIMOS MÓDULOS ── */
+  .roadmap {
+    padding: 72px 60px;
+    background: var(--bg-dark);
+    border-top: 3px solid var(--primary);
+    margin-top: 48px;
+  }
+  .roadmap-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .roadmap-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .roadmap-header p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .roadmap-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--bg-card);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .roadmap-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+  }
+  .roadmap-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+  }
+  .roadmap-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .roadmap-fase {
+    display: inline-block;
+    background: rgba(123,79,212,0.15);
+    border: 1px solid rgba(123,79,212,0.4);
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .roadmap-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .roadmap-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .roadmap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: var(--bg-panel);
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    border-top: 1px solid var(--bg-card);
+    margin-top: 60px;
+  }
+  footer .grad {
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  /* Âncoras */
+  .anchor { scroll-margin-top: 20px; }
+
+  @media (max-width: 900px) {
+    .modulo, .modulo:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+    .modulo-img { min-height: 280px; }
+    .modulo:nth-child(even) .modulo-img { order: 0; border: none; border-bottom: 1px solid var(--bg-card); }
+    .sumario { padding: 32px 24px; }
+    .modulo-desc { padding: 28px 24px; }
+    .secao-titulo { padding: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     CAPA
+══════════════════════════════════════ -->
+<section class="capa">
+  <img class="capa-logo"
+       src="Gestor3D.UI\Assets\Imagens\logo_sistema.png"
+       onerror="this.style.display='none'"
+       alt="Gestor3D"/>
+  <h1>Gestor3D</h1>
+  <p class="subtitulo">Sistema de Gestão para Impressão 3D</p>
+  <span class="versao">v1.0 — MVP</span>
+  <div class="capa-info">
+    <div class="capa-badge"><div class="num">17</div><div class="desc">Módulos</div></div>
+    <div class="capa-badge"><div class="num">5</div><div class="desc">Relatórios</div></div>
+    <div class="capa-badge"><div class="num">∞</div><div class="desc">Pedidos</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SUMÁRIO
+══════════════════════════════════════ -->
+<nav class="sumario">
+  <h2>Sumário</h2>
+  <div class="sumario-grid">
+    <a class="sumario-item" href="#dashboard">    <span class="icone">📊</span><span class="num">01</span>Dashboard</a>
+    <a class="sumario-item" href="#pedidos">      <span class="icone">📦</span><span class="num">02</span>Pedidos</a>
+    <a class="sumario-item" href="#producao">     <span class="icone">⚙️</span><span class="num">03</span>Fila de Produção</a>
+    <a class="sumario-item" href="#produtos">     <span class="icone">🖨️</span><span class="num">04</span>Produtos</a>
+    <a class="sumario-item" href="#categorias">   <span class="icone">🏷️</span><span class="num">05</span>Categorias</a>
+    <a class="sumario-item" href="#materiais">    <span class="icone">🧵</span><span class="num">06</span>Materiais</a>
+    <a class="sumario-item" href="#impressoras">  <span class="icone">🖥️</span><span class="num">07</span>Impressoras</a>
+    <a class="sumario-item" href="#clientes">     <span class="icone">👤</span><span class="num">08</span>Clientes</a>
+    <a class="sumario-item" href="#marketplaces"> <span class="icone">🏪</span><span class="num">09</span>Marketplaces</a>
+    <a class="sumario-item" href="#usuarios">     <span class="icone">🔐</span><span class="num">10</span>Usuários</a>
+    <a class="sumario-item" href="#empresa">      <span class="icone">🏢</span><span class="num">11</span>Empresa</a>
+    <a class="sumario-item" href="#precificacao"> <span class="icone">💰</span><span class="num">12</span>Precificação</a>
+    <a class="sumario-item" href="#rel-lucro">    <span class="icone">📈</span><span class="num">13</span>Rel. Lucro por Pedido</a>
+    <a class="sumario-item" href="#rel-materiais"><span class="icone">🧵</span><span class="num">14</span>Rel. Consumo de Materiais</a>
+    <a class="sumario-item" href="#rel-producao"> <span class="icone">⚙️</span><span class="num">15</span>Rel. Produção por Impressora</a>
+    <a class="sumario-item" href="#rel-categoria"><span class="icone">🏷️</span><span class="num">16</span>Rel. Venda por Categoria</a>
+    <a class="sumario-item" href="#rel-produto">  <span class="icone">📦</span><span class="num">17</span>Rel. Venda por Produto</a>
+    <a class="sumario-item sumario-proximo" href="#proximos"><span class="icone">🚀</span><span class="num" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">→</span>O que vem a seguir</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     OPERAÇÕES
+══════════════════════════════════════ -->
+<div class="secao-titulo"><h2>Operações</h2></div>
+
+<!-- 01 Dashboard -->
+<article class="modulo anchor" id="dashboard">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">01</span>
+      <span class="modulo-icone">📊</span>
+      <div><div class="modulo-titulo">Dashboard</div><div class="modulo-sub">Visão geral do negócio</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Tela inicial do sistema. Apresenta os principais indicadores de desempenho do negócio em tempo real, permitindo uma visão rápida da operação sem necessidade de acessar relatórios detalhados.</p>
+      <h4>Indicadores (KPIs)</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Pedidos Pendentes, Em Produção, Atrasados e Estoque Crítico</div>
+        <div class="func-item">Faturamento e Lucro Estimado do mês corrente</div>
+        <div class="func-item">Status das impressoras: Disponíveis, Imprimindo, Em Falha</div>
+        <div class="func-item">Top 5 Produtos e Top 5 Categorias mais vendidos</div>
+      </div>
+      <h4>Acompanhamento Operacional</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Kanban de Fila de Produção com rolagem horizontal por status</div>
+        <div class="func-item">Tabela dos Últimos Pedidos com acesso rápido</div>
+        <div class="func-item">Botão de atualização manual dos dados</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag verde">Tempo real</span>
+      <span class="tag roxo">KPIs</span>
+      <span class="tag azul">Kanban</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/01_dashboard.png" alt="Dashboard" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>📊</div><span>Dashboard</span></div>'"/>
+  </div>
+</article>
+
+<!-- 02 Pedidos -->
+<article class="modulo anchor" id="pedidos">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">02</span>
+      <span class="modulo-icone">📦</span>
+      <div><div class="modulo-titulo">Pedidos</div><div class="modulo-sub">Gestão do ciclo de vida dos pedidos</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Módulo central do sistema. Permite criar, acompanhar e avançar os pedidos de clientes ao longo de todo o fluxo de trabalho, desde o recebimento até a entrega.</p>
+      <h4>Cadastro de Pedidos</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Número, Cliente, Marketplace, Prazo e Frete</div>
+        <div class="func-item">Adição de múltiplos itens com Produto, Quantidade e Preço unitário</div>
+        <div class="func-item">Painel automático de totais: Valor bruto, Taxas, Frete, Custo, Lucro e Margem</div>
+        <div class="func-item">Cópia de pedido existente para agilizar reordens</div>
+      </div>
+      <h4>Controle de Status</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Fluxo completo: Recebido → Produção → Acabamento → Embalado → Enviado → Entregue</div>
+        <div class="func-item">Filtro por status, busca por cliente ou número</div>
+        <div class="func-item">Iniciar produção diretamente do pedido com atribuição de impressora e material</div>
+        <div class="func-item">Resolução de conflito de impressora quando múltiplos itens competem pelo mesmo equipamento</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+      <span class="tag azul">Fluxo de status</span>
+      <span class="tag verde">Cálculo automático</span>
+      <span class="tag laranja">Marketplace</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/02_pedidos.png" alt="Pedidos" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>📦</div><span>Pedidos</span></div>'"/>
+  </div>
+</article>
+
+<!-- 03 Produção -->
+<article class="modulo anchor" id="producao">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">03</span>
+      <span class="modulo-icone">⚙️</span>
+      <div><div class="modulo-titulo">Fila de Produção</div><div class="modulo-sub">Controle da impressão em andamento</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Controla todas as produções ativas, permitindo iniciar, pausar, finalizar ou registrar falhas. Ao finalizar, realiza a baixa automática do material consumido no estoque.</p>
+      <h4>Gestão da Fila</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Visualização tabular com Produto, Pedido, Impressora, Material, Peso, Tempo e Status</div>
+        <div class="func-item">Ações por linha: Iniciar (▶), Finalizar (✔), Pausar (⏸), Registrar Falha (⚠), Cancelar (✕)</div>
+        <div class="func-item">Tempo restante estimado visível em tempo real</div>
+      </div>
+      <h4>Nova Produção Manual</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Vinculação a um item de pedido existente</div>
+        <div class="func-item">Seleção de Impressora e Material</div>
+        <div class="func-item">Definição de peso e tempo estimados</div>
+        <div class="func-item">Registro de falha com motivo, material perdido e geração de reimpressão</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag azul">Baixa de estoque</span>
+      <span class="tag laranja">Controle de falhas</span>
+      <span class="tag verde">Reimpressão</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/03_producao.png" alt="Produção" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>⚙️</div><span>Fila de Produção</span></div>'"/>
+  </div>
+</article>
+
+<!-- ══════════════════════════════════
+     CADASTROS
+══════════════════════════════════════ -->
+<div class="secao-titulo"><h2>Cadastros</h2></div>
+
+<!-- 04 Produtos -->
+<article class="modulo anchor" id="produtos">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">04</span>
+      <span class="modulo-icone">🖨️</span>
+      <div><div class="modulo-titulo">Produtos</div><div class="modulo-sub">Catálogo de modelos 3D</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Cadastro dos modelos 3D oferecidos para venda. Cada produto armazena parâmetros técnicos de impressão e informações de precificação, servindo de base para cálculo de custos nos pedidos.</p>
+      <h4>Dados do Produto</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome, Categoria e Material padrão</div>
+        <div class="func-item">Peso médio (g) e Tempo de impressão (h) típicos</div>
+        <div class="func-item">Custo estimado e Preço sugerido com margem desejada</div>
+        <div class="func-item">Ativação/desativação do produto para venda</div>
+      </div>
+      <h4>Integração com Precificação</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Botão "Calculadora" abre o simulador de precificação para o produto</div>
+        <div class="func-item">Preço calculado pode ser aplicado diretamente ao cadastro</div>
+        <div class="func-item">Filtros por categoria e busca por nome</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+      <span class="tag azul">Integrado ao cálculo</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/04_produtos.png" alt="Produtos" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🖨️</div><span>Produtos</span></div>'"/>
+  </div>
+</article>
+
+<!-- 05 Categorias -->
+<article class="modulo anchor" id="categorias">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">05</span>
+      <span class="modulo-icone">🏷️</span>
+      <div><div class="modulo-titulo">Categorias</div><div class="modulo-sub">Organização do catálogo</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Permite organizar os produtos em grupos temáticos para facilitar a localização, aplicação de filtros e análise de desempenho por linha de produto nos relatórios.</p>
+      <h4>Funcionalidades</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Cadastro com nome e descrição</div>
+        <div class="func-item">Ativação e desativação de categorias</div>
+        <div class="func-item">Usada como filtro em Produtos, Pedidos e Relatórios</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/05_categorias.png" alt="Categorias" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🏷️</div><span>Categorias</span></div>'"/>
+  </div>
+</article>
+
+<!-- 06 Materiais -->
+<article class="modulo anchor" id="materiais">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">06</span>
+      <span class="modulo-icone">🧵</span>
+      <div><div class="modulo-titulo">Materiais</div><div class="modulo-sub">Controle de filamentos e insumos</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Gerencia o estoque de filamentos, resinas e outros insumos utilizados nas impressões. Alerta automaticamente quando o estoque de algum material atinge o nível mínimo configurado.</p>
+      <h4>Cadastro e Estoque</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome, Tipo (PLA, PETG, ABS, Resina...), Cor, Marca e Fornecedor</div>
+        <div class="func-item">Quantidade comprada, Preço pago e Data de compra para cálculo do custo por grama</div>
+        <div class="func-item">Estoque mínimo configurável com alerta visual em amarelo</div>
+        <div class="func-item">Filtro por tipo e por materiais em estoque crítico</div>
+      </div>
+      <h4>Movimentação</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Entrada de estoque manual com quantidade e motivo</div>
+        <div class="func-item">Saída automática ao concluir uma produção (baixa de estoque)</div>
+        <div class="func-item">Situação visível: OK (verde) ou Crítico (laranja)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag laranja">Alerta de estoque</span>
+      <span class="tag azul">Baixa automática</span>
+      <span class="tag verde">Custo por grama</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/06_materiais.png" alt="Materiais" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🧵</div><span>Materiais</span></div>'"/>
+  </div>
+</article>
+
+<!-- 07 Impressoras -->
+<article class="modulo anchor" id="impressoras">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">07</span>
+      <span class="modulo-icone">🖥️</span>
+      <div><div class="modulo-titulo">Impressoras</div><div class="modulo-sub">Parque de máquinas e custo/hora</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Cadastro e monitoramento das impressoras 3D disponíveis. O custo/hora configurado aqui é usado diretamente no cálculo de precificação de todos os produtos.</p>
+      <h4>Cadastro</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Fabricante, Modelo e Nome personalizado</div>
+        <div class="func-item">Tipo de impressão (FDM, Resina, SLS...)</div>
+        <div class="func-item">Custo/hora (depreciação + manutenção) e Consumo em Watts</div>
+        <div class="func-item">Área útil de impressão (X × Y × Z mm) e Data de aquisição</div>
+      </div>
+      <h4>Monitoramento</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Cards visuais com status colorido: Disponível, Imprimindo, Manutenção, Parada, Inativa, Falha</div>
+        <div class="func-item">Autocompletar de fabricante com chips de modelos conhecidos</div>
+        <div class="func-item">Status atualizado automaticamente pelo módulo de Produção</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+      <span class="tag azul">Status visual</span>
+      <span class="tag verde">Custo/hora</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/07_impressoras.png" alt="Impressoras" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🖥️</div><span>Impressoras</span></div>'"/>
+  </div>
+</article>
+
+<!-- 08 Clientes -->
+<article class="modulo anchor" id="clientes">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">08</span>
+      <span class="modulo-icone">👤</span>
+      <div><div class="modulo-titulo">Clientes</div><div class="modulo-sub">Base de compradores</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Cadastro e gestão da base de clientes. Os clientes são vinculados aos pedidos para controle de histórico e análise de recorrência.</p>
+      <h4>Dados do Cliente</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome, CPF/CNPJ com máscara, Telefone e E-mail</div>
+        <div class="func-item">Endereço completo e campo de Observações</div>
+        <div class="func-item">Ativação e desativação do cadastro</div>
+        <div class="func-item">Busca por nome, CPF/CNPJ ou e-mail</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/08_clientes.png" alt="Clientes" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>👤</div><span>Clientes</span></div>'"/>
+  </div>
+</article>
+
+<!-- 09 Marketplaces -->
+<article class="modulo anchor" id="marketplaces">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">09</span>
+      <span class="modulo-icone">🏪</span>
+      <div><div class="modulo-titulo">Marketplaces</div><div class="modulo-sub">Canais de venda e taxas</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Configura os canais de venda utilizados (Shopee, Mercado Livre, Etsy, venda direta etc.) e suas respectivas taxas. As taxas são aplicadas automaticamente no cálculo de lucro dos pedidos.</p>
+      <h4>Configuração</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome do canal de venda</div>
+        <div class="func-item">Taxa percentual (%) cobrada sobre o valor da venda</div>
+        <div class="func-item">Taxa fixa (R$) por transação quando aplicável</div>
+        <div class="func-item">Ativação e desativação do canal</div>
+      </div>
+      <h4>Exemplo de uso</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Shopee: ~12% + R$0,00 fixo</div>
+        <div class="func-item">Mercado Livre: ~11–16% + taxa variável</div>
+        <div class="func-item">Venda direta: 0% sem taxas</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+      <span class="tag laranja">Taxas automáticas</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/09_marketplaces.png" alt="Marketplaces" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🏪</div><span>Marketplaces</span></div>'"/>
+  </div>
+</article>
+
+<!-- 10 Usuários -->
+<article class="modulo anchor" id="usuarios">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">10</span>
+      <span class="modulo-icone">🔐</span>
+      <div><div class="modulo-titulo">Usuários</div><div class="modulo-sub">Controle de acesso</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Gerencia os usuários com acesso ao sistema e seus perfis de permissão. Cada perfil determina quais módulos e ações o usuário pode executar.</p>
+      <h4>Cadastro</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome, E-mail e Senha com confirmação</div>
+        <div class="func-item">Perfil: Administrador, Operador ou Visualizador</div>
+        <div class="func-item">Toggle de visibilidade da senha durante o cadastro</div>
+        <div class="func-item">Ativação e desativação do usuário</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">CRUD</span>
+      <span class="tag azul">Perfis de acesso</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/10_usuarios.png" alt="Usuários" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🔐</div><span>Usuários</span></div>'"/>
+  </div>
+</article>
+
+<!-- 11 Empresa -->
+<article class="modulo anchor" id="empresa">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">11</span>
+      <span class="modulo-icone">🏢</span>
+      <div><div class="modulo-titulo">Empresa</div><div class="modulo-sub">Dados cadastrais e configurações globais</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Configuração central da empresa. Os parâmetros operacionais definidos aqui são usados automaticamente em todos os cálculos de custo e precificação do sistema.</p>
+      <h4>Dados Cadastrais</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nome da empresa, CNPJ, Telefone e E-mail</div>
+      </div>
+      <h4>Configurações Operacionais</h4>
+      <div class="funcionalidades">
+        <div class="func-item"><strong>Custo do kWh (R$)</strong> — tarifa de energia elétrica local</div>
+        <div class="func-item"><strong>Mão de obra/hora (R$)</strong> — custo horário do operador</div>
+        <div class="func-item"><strong>Taxa de perda/falha (%)</strong> — percentual médio de falhas na impressão</div>
+        <div class="func-item"><strong>Margem padrão (%)</strong> — margem de lucro padrão aplicada nas simulações</div>
+      </div>
+      <p style="margin-top:12px">Edição protegida: o usuário clica em <em>Editar</em>, faz as alterações e confirma com <em>Salvar</em>.</p>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">Configuração global</span>
+      <span class="tag verde">Impacta todos os cálculos</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/11_empresa.png" alt="Empresa" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🏢</div><span>Empresa</span></div>'"/>
+  </div>
+</article>
+
+<!-- ══════════════════════════════════
+     FINANCEIRO
+══════════════════════════════════════ -->
+<div class="secao-titulo"><h2>Financeiro</h2></div>
+
+<!-- 12 Precificação -->
+<article class="modulo anchor" id="precificacao">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">12</span>
+      <span class="modulo-icone">💰</span>
+      <div><div class="modulo-titulo">Precificação</div><div class="modulo-sub">Simulador de custo e preço</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Calculadora avançada que determina o preço de venda correto para cada produto. Considera todos os custos envolvidos na produção e garante a margem de lucro desejada.</p>
+      <h4>Entradas do Cálculo</h4>
+      <div class="funcionalidades">
+        <div class="func-item"><strong>Material:</strong> Peso (g) × Custo por grama (R$)</div>
+        <div class="func-item"><strong>Máquina:</strong> Tempo de impressão (h) × Custo/hora da impressora</div>
+        <div class="func-item"><strong>Energia:</strong> Consumo (Watts) × Custo do kWh × Tempo</div>
+        <div class="func-item"><strong>Embalagem, Mão de obra, Acabamento</strong> (opcionais)</div>
+        <div class="func-item"><strong>Taxas de Marketplace:</strong> percentual + valor fixo</div>
+        <div class="func-item"><strong>Margem de lucro desejada</strong> e percentual de perda estimada</div>
+      </div>
+      <h4>Resultado</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Preço sugerido em destaque com gradiente roxo-azul</div>
+        <div class="func-item">Detalhamento completo de cada componente do custo</div>
+        <div class="func-item">Margem líquida e margem bruta</div>
+        <div class="func-item">Aplicação direta do preço calculado ao produto</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag verde">Margem garantida</span>
+      <span class="tag roxo">Cálculo em tempo real</span>
+      <span class="tag azul">Multi-marketplace</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/12_precificacao.png" alt="Precificação" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>💰</div><span>Precificação</span></div>'"/>
+  </div>
+</article>
+
+<!-- ══════════════════════════════════
+     RELATÓRIOS
+══════════════════════════════════════ -->
+<div class="secao-titulo"><h2>Relatórios</h2></div>
+
+<!-- 13 Rel Lucro -->
+<article class="modulo anchor" id="rel-lucro">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">13</span>
+      <span class="modulo-icone">📈</span>
+      <div><div class="modulo-titulo">Lucro por Pedido</div><div class="modulo-sub">Análise financeira detalhada</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Relatório financeiro que exibe o resultado de cada pedido do período selecionado, mostrando faturamento, custos, taxas e lucro estimado com suas respectivas margens.</p>
+      <h4>Filtros e KPIs</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Filtro por Ano e Mês</div>
+        <div class="func-item">KPIs: Total de Pedidos, Faturamento, Lucro Estimado, Margem Média</div>
+      </div>
+      <h4>Colunas da Tabela</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Nº Pedido, Data, Cliente, Marketplace, Status</div>
+        <div class="func-item">Faturamento, Custo, Taxas + Frete, Lucro, Margem (%)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag verde">Lucro por pedido</span>
+      <span class="tag azul">Filtro mensal</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/13_rel_lucro.png" alt="Relatório Lucro" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>📈</div><span>Relatório de Lucro</span></div>'"/>
+  </div>
+</article>
+
+<!-- 14 Rel Materiais -->
+<article class="modulo anchor" id="rel-materiais">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">14</span>
+      <span class="modulo-icone">🧵</span>
+      <div><div class="modulo-titulo">Consumo de Materiais</div><div class="modulo-sub">Rastreabilidade do estoque</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Relatório de consumo e situação atual do estoque de materiais. Permite identificar quais insumos têm maior saída, seu custo e se estão em nível crítico.</p>
+      <h4>Filtros e KPIs</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Filtro por Tipo de material</div>
+        <div class="func-item">KPIs: Total Comprado, Total Consumido, Disponível (g), Custo Consumido, Qtd em Crítico</div>
+      </div>
+      <h4>Colunas da Tabela</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Material, Tipo, Marca</div>
+        <div class="func-item">Comprado (g), Consumido (g), Disponível (g)</div>
+        <div class="func-item">Custo/g, Custo Consumido, Situação (OK / ⚠ Crítico)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag laranja">Alerta crítico</span>
+      <span class="tag azul">Rastreabilidade</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/14_rel_materiais.png" alt="Relatório Materiais" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🧵</div><span>Consumo de Materiais</span></div>'"/>
+  </div>
+</article>
+
+<!-- 15 Rel Produção -->
+<article class="modulo anchor" id="rel-producao">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">15</span>
+      <span class="modulo-icone">⚙️</span>
+      <div><div class="modulo-titulo">Produção por Impressora</div><div class="modulo-sub">Eficiência do parque de máquinas</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Relatório que consolida o desempenho de cada impressora: total de produções, taxa de sucesso, tempo total de uso e quantidade de material processado.</p>
+      <h4>KPIs Globais</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Total de Produções, Finalizadas, Falhas, Tempo Total (h), Material (g)</div>
+      </div>
+      <h4>Colunas por Impressora</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Impressora, Total, Finalizadas, Falhas, Canceladas</div>
+        <div class="func-item">Tempo (h), Material (g), Taxa de Sucesso (%)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag azul">Eficiência por máquina</span>
+      <span class="tag verde">Taxa de sucesso</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/15_rel_producao.png" alt="Relatório Produção" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>⚙️</div><span>Produção por Impressora</span></div>'"/>
+  </div>
+</article>
+
+<!-- 16 Rel Categoria -->
+<article class="modulo anchor" id="rel-categoria">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">16</span>
+      <span class="modulo-icone">🏷️</span>
+      <div><div class="modulo-titulo">Venda por Categoria</div><div class="modulo-sub">Desempenho por linha de produto</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>Analisa o desempenho de vendas agrupado por categoria de produto no período selecionado. Ideal para identificar as linhas mais lucrativas e tomar decisões de portfólio.</p>
+      <h4>Filtros e KPIs</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Filtro por Ano e Mês</div>
+        <div class="func-item">KPIs: Categorias ativas, Faturamento, Lucro Estimado, Margem Média</div>
+      </div>
+      <h4>Colunas da Tabela</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Categoria, Produtos distintos, Unidades vendidas, Pedidos</div>
+        <div class="func-item">Faturamento, Custo, Lucro, Margem (%)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag roxo">Análise por linha</span>
+      <span class="tag azul">Filtro mensal</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/16_rel_categoria.png" alt="Relatório Categoria" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>🏷️</div><span>Venda por Categoria</span></div>'"/>
+  </div>
+</article>
+
+<!-- 17 Rel Produto -->
+<article class="modulo anchor" id="rel-produto">
+  <div class="modulo-desc">
+    <div class="modulo-header">
+      <span class="modulo-num">17</span>
+      <span class="modulo-icone">📦</span>
+      <div><div class="modulo-titulo">Venda por Produto</div><div class="modulo-sub">Ranking de produtos mais vendidos</div></div>
+    </div>
+    <div class="desc-bloco">
+      <p>O relatório mais granular do sistema: mostra o desempenho individual de cada produto, com quantidade vendida, faturamento, custo, lucro e margem. Permite filtrar por categoria para análise segmentada.</p>
+      <h4>Filtros e KPIs</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Filtro por Ano, Mês e Categoria</div>
+        <div class="func-item">KPIs: Produtos, Unidades, Faturamento, Lucro Estimado, Margem Média</div>
+      </div>
+      <h4>Colunas da Tabela</h4>
+      <div class="funcionalidades">
+        <div class="func-item">Produto, Categoria, Unidades vendidas, Pedidos</div>
+        <div class="func-item">Preço Médio, Faturamento, Custo, Lucro, Margem (%)</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag verde">Ranking</span>
+      <span class="tag roxo">Análise granular</span>
+      <span class="tag azul">Filtro por categoria</span>
+    </div>
+  </div>
+  <div class="modulo-img">
+    <img src="_screenshots/17_rel_produto.png" alt="Relatório Produto" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=placeholder><div class=icon>📦</div><span>Venda por Produto</span></div>'"/>
+  </div>
+</article>
+
+<!-- ── PRÓXIMOS MÓDULOS ── -->
+<section class="roadmap" id="proximos">
+  <div class="roadmap-header">
+    <h2>O que vem a seguir</h2>
+    <p>Módulos planejados para as próximas versões do Gestor3D</p>
+  </div>
+  <div class="roadmap-grid">
+
+    <div class="roadmap-card">
+      <div class="roadmap-icon">🛒</div>
+      <div class="roadmap-fase">Fase 2</div>
+      <h3>Integração com Marketplaces</h3>
+      <p>Conexão direta com Shopee, Mercado Livre, Etsy e Amazon. Importação automática de pedidos, sincronização de status e controle de taxas por canal de venda — sem precisar inserir pedidos manualmente.</p>
+      <div class="roadmap-tags">
+        <span class="tag azul">Shopee</span>
+        <span class="tag laranja">Mercado Livre</span>
+        <span class="tag verde">Etsy</span>
+        <span class="tag roxo">Amazon</span>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-icon">🔧</div>
+      <div class="roadmap-fase">Fase 3</div>
+      <h3>Manutenção de Impressoras</h3>
+      <p>Registro de manutenções preventivas e corretivas por impressora, histórico de intervenções, alertas por tempo de uso ou falhas acumuladas e cálculo do impacto das paradas na produção.</p>
+      <div class="roadmap-tags">
+        <span class="tag laranja">Histórico</span>
+        <span class="tag roxo">Alertas</span>
+        <span class="tag azul">Custo de parada</span>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-icon">🏦</div>
+      <div class="roadmap-fase">Fase 3</div>
+      <h3>Retaguarda — Estoque e Financeiro</h3>
+      <p>Estoque de produtos prontos, lançamentos financeiros de receitas e despesas, fluxo de caixa, controle de fornecedores e geração de relatórios contábeis para uma visão completa da saúde do negócio.</p>
+      <div class="roadmap-tags">
+        <span class="tag verde">Estoque</span>
+        <span class="tag azul">Fluxo de caixa</span>
+        <span class="tag roxo">Fornecedores</span>
+        <span class="tag laranja">Relatórios</span>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-icon">📡</div>
+      <div class="roadmap-fase">Fase 4</div>
+      <h3>Monitoramento em Tempo Real</h3>
+      <p>Integração com OctoPrint e Klipper para acompanhar o progresso de cada impressão remotamente, receber alertas de falha, visualizar temperatura, progresso e câmera ao vivo diretamente no Gestor3D.</p>
+      <div class="roadmap-tags">
+        <span class="tag verde">OctoPrint</span>
+        <span class="tag roxo">Klipper</span>
+        <span class="tag azul">Câmera ao vivo</span>
+        <span class="tag laranja">Alertas</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="grad">Gestor3D</div>
+  <p>Sistema de Gestão para Impressão 3D — v1.0 MVP</p>
+  <p style="margin-top:8px">Para suporte ou dúvidas, entre em contato com o desenvolvedor.</p>
+</footer>
+
+</body>
+</html>
