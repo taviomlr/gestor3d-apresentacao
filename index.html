@@ -361,6 +361,21 @@
     height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
   }
+  .roadmap-card-disponivel {
+    border-color: rgba(34,197,94,0.35);
+    background: rgba(34,197,94,0.04);
+  }
+  .roadmap-card-disponivel::before {
+    background: linear-gradient(90deg, var(--success), #16a34a);
+  }
+  .roadmap-card-disponivel:hover {
+    border-color: var(--success);
+  }
+  .roadmap-fase-disponivel {
+    background: rgba(34,197,94,0.15);
+    border: 1px solid rgba(34,197,94,0.4);
+    color: var(--success);
+  }
   .roadmap-card:hover {
     border-color: var(--primary);
     transform: translateY(-3px);
@@ -1080,15 +1095,27 @@
   </div>
   <div class="roadmap-grid">
 
+    <div class="roadmap-card roadmap-card-disponivel">
+      <div class="roadmap-icon">🧮</div>
+      <div class="roadmap-fase roadmap-fase-disponivel">Já disponível — Gratuito</div>
+      <h3>Simulador de Precificação</h3>
+      <p>Ferramenta standalone e gratuita para calcular o custo e o preço ideal de qualquer peça impressa em 3D. Sem necessidade de cadastro ou sistema — informe peso, tempo, energia, mão de obra e taxas para obter o preço sugerido com margem de lucro configurável. Exporta o resultado em PDF.</p>
+      <div class="roadmap-tags">
+        <span class="tag verde">Gratuito</span>
+        <span class="tag azul">Sem instalação</span>
+        <span class="tag roxo">Export PDF</span>
+        <span class="tag laranja">Windows x86/x64</span>
+      </div>
+    </div>
+
     <div class="roadmap-card">
       <div class="roadmap-icon">🛒</div>
       <div class="roadmap-fase">Fase 2</div>
       <h3>Integração com Marketplaces</h3>
-      <p>Conexão direta com Shopee, Mercado Livre, Etsy e Amazon. Importação automática de pedidos, sincronização de status e controle de taxas por canal de venda — sem precisar inserir pedidos manualmente.</p>
+      <p>Conexão direta com Shopee, Mercado Livre, Amazon e etc. Importação automática de pedidos, sincronização de status e controle de taxas por canal de venda — sem precisar inserir pedidos manualmente.</p>
       <div class="roadmap-tags">
         <span class="tag azul">Shopee</span>
-        <span class="tag laranja">Mercado Livre</span>
-        <span class="tag verde">Etsy</span>
+        <span class="tag laranja">Mercado Livre</span>        
         <span class="tag roxo">Amazon</span>
       </div>
     </div>
