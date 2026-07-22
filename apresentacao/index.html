@@ -437,6 +437,30 @@
   }
 
   /* Âncoras */
+  .home-link {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45,43,69,0.92);
+    border: 1px solid var(--bg-card);
+    color: var(--text);
+    text-decoration: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    backdrop-filter: blur(10px);
+  }
+  .home-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .anchor { scroll-margin-top: 20px; }
 
   @media (max-width: 900px) {
@@ -452,6 +476,7 @@
 </style>
 </head>
 <body>
+<a class="home-link" href="../">← Início</a>
 
 <!-- ══════════════════════════════════
      CAPA
