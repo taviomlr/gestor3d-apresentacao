@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manual de Uso | Gestor3D</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Menu do manual">
+      <a class="brand" href="#empresa" data-route="empresa">
+        <span class="brand-mark">3D</span>
+        <span>
+          <span class="brand-title">Gestor3D</span>
+          <span class="brand-subtitle">Manual de Uso</span>
+        </span>
+      </a>
+
+      <nav>
+        <div class="menu-section">
+          <div class="menu-heading">Primeiros Passos</div>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Instalação e acesso</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Licença da instalação</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Checklist inicial</span><span class="status">em breve</span></button>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-heading">Cadastros</div>
+          <button class="menu-link active" type="button" data-route="empresa"><span class="menu-label">Empresa</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="usuarios"><span class="menu-label">Usuários</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="clientes"><span class="menu-label">Clientes</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="marketplaces"><span class="menu-label">Marketplaces</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="impressoras"><span class="menu-label">Impressoras</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="materiais"><span class="menu-label">Materiais</span><span class="status ready">pronto</span></button>
+          <button class="menu-link" type="button" data-route="categorias"><span class="menu-label">Categorias</span><span class="status ready">pronto</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Produtos</span><span class="status">em breve</span></button>
+          <button class="menu-link" type="button" data-route="fornecedores"><span class="menu-label">Fornecedores</span><span class="status ready">pronto</span></button>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-heading">Operação</div>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Pedidos</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Produção manual</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Falhas e reparos</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Manutenção</span><span class="status">em breve</span></button>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-heading">Estoque</div>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Entrada de materiais</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Estoque de produtos</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Auditoria de estoque</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Desperdício</span><span class="status">em breve</span></button>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-heading">Financeiro</div>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Precificação</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Custos fixos</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Minhas contas</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Agenda financeira</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Quanto preciso vender?</span><span class="status">em breve</span></button>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-heading">Relatórios</div>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Lucro por pedido</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Lucro real</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Consumo de material</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Produção por impressora</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Venda por categoria</span><span class="status">em breve</span></button>
+          <button class="menu-link disabled" type="button"><span class="menu-label">Venda por produto</span><span class="status">em breve</span></button>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>Manual de Uso do Gestor3D</h1>
+          <p>Rotinas operacionais organizadas por módulo.</p>
+        </div>
+        <select class="mobile-menu" aria-label="Selecionar rotina">
+          <option value="empresa">Cadastros - Empresa</option>
+          <option value="categorias">Cadastros - Categorias</option>
+          <option value="clientes">Cadastros - Clientes</option>
+          <option value="usuarios">Cadastros - Usuários</option>
+          <option value="marketplaces">Cadastros - Marketplaces</option>
+          <option value="impressoras">Cadastros - Impressoras</option>
+          <option value="materiais">Cadastros - Materiais</option>
+          <option value="fornecedores">Cadastros - Fornecedores</option>
+        </select>
+        <input class="search" type="search" placeholder="Buscar neste manual" aria-label="Buscar neste manual"/>
+      </header>
+
+      <article class="page" id="content">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro da Empresa</h2>
+          <p>
+            Esta rotina concentra os dados cadastrais da empresa e os principais parâmetros usados
+            nos cálculos de custo, preço de venda, imposto, perdas e ponto de equilíbrio.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Empresa</span>
+            <span class="pill">Perfil recomendado: Administrador</span>
+            <span class="pill">Versão base: Gestor3D v1.1.0</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <p>Use esta tela quando precisar configurar ou revisar as informações centrais do negócio.</p>
+          <ul>
+            <li>Após a instalação inicial do Gestor3D.</li>
+            <li>Quando houver alteração de nome, CNPJ, telefone ou e-mail da empresa.</li>
+            <li>Quando os custos de mão de obra, energia, impostos, perdas ou margem padrão mudarem.</li>
+            <li>Antes de iniciar a precificação de produtos, para evitar preços calculados com parâmetros incorretos.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>
+            A tela Empresa fica no menu lateral, dentro do grupo <strong>Cadastros</strong>.
+            Ao entrar, os campos podem aparecer em modo de visualização. Para alterar os dados,
+            clique em <strong>Editar</strong>, no canto superior direito.
+          </p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_empresa.png" alt="Tela de cadastro da empresa no Gestor3D"/>
+            <div class="caption">Tela Empresa em modo de edição, com dados cadastrais e parâmetros operacionais.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>No menu lateral, abra <strong>Cadastros</strong>.</li>
+            <li>Clique em <strong>Empresa</strong>.</li>
+            <li>Clique em <strong>Editar</strong> para liberar os campos.</li>
+            <li>Revise os dados cadastrais: nome da empresa, CNPJ, telefone e e-mail.</li>
+            <li>Preencha ou confira os parâmetros de mão de obra, energia, perdas, margem e imposto.</li>
+            <li>Clique em <strong>Salvar alterações</strong>.</li>
+            <li>Aguarde a mensagem de sucesso antes de sair da tela.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+
+          <h4>Dados da Empresa</h4>
+          <div class="grid">
+            <div class="field">
+              <strong>Nome da empresa *</strong>
+              <span>Campo obrigatório. Ao salvar, o sistema grava o nome em letras maiúsculas.</span>
+            </div>
+            <div class="field">
+              <strong>CNPJ</strong>
+              <span>Identificação fiscal da empresa. O campo aceita máscara de CPF/CNPJ.</span>
+            </div>
+            <div class="field">
+              <strong>Telefone</strong>
+              <span>Telefone comercial ou de atendimento, usado como informação cadastral.</span>
+            </div>
+            <div class="field">
+              <strong>E-mail</strong>
+              <span>E-mail principal da empresa, usado como contato administrativo.</span>
+            </div>
+          </div>
+
+          <h4>Configurações de Mão de Obra</h4>
+          <div class="grid">
+            <div class="field">
+              <strong>Quanto desejo receber/mês</strong>
+              <span>Valor mensal desejado para remuneração do trabalho. Também alimenta a meta de lucro da tela "Quanto Preciso Vender?".</span>
+            </div>
+            <div class="field">
+              <strong>Horas de trabalho/mês</strong>
+              <span>Total estimado de horas trabalhadas no mês.</span>
+            </div>
+            <div class="field">
+              <strong>Valor mão de obra/hora</strong>
+              <span>Usado nos cálculos de custo. Pode ser calculado automaticamente ou ajustado manualmente.</span>
+            </div>
+          </div>
+          <code class="formula">Valor mão de obra/hora = quanto desejo receber no mês / horas de trabalho no mês</code>
+
+          <h4>Configurações de Energia</h4>
+          <div class="grid">
+            <div class="field">
+              <strong>Valor da conta de energia/mês</strong>
+              <span>Valor médio pago de energia elétrica no mês.</span>
+            </div>
+            <div class="field">
+              <strong>Consumo médio/mês (kWh)</strong>
+              <span>Quantidade média de kWh consumida no mesmo período.</span>
+            </div>
+            <div class="field">
+              <strong>Tarifa kWh</strong>
+              <span>Custo por kWh usado para calcular energia consumida pelas impressões.</span>
+            </div>
+          </div>
+          <code class="formula">Tarifa kWh = valor da conta de energia / consumo médio em kWh</code>
+
+          <h4>Perdas, Margem e Imposto</h4>
+          <div class="grid">
+            <div class="field">
+              <strong>Taxa de perda/falha (%)</strong>
+              <span>Percentual médio usado para considerar perdas no custo das peças.</span>
+            </div>
+            <div class="field">
+              <strong>Margem padrão de lucro (%)</strong>
+              <span>Margem usada como referência nas rotinas de precificação.</span>
+            </div>
+            <div class="field">
+              <strong>Imposto por produto (%)</strong>
+              <span>Percentual aplicado nos pedidos e na calculadora de preços.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">
+            O campo <strong>Nome da empresa</strong> é obrigatório. Se ele estiver vazio, o sistema exibe uma validação
+            e não salva as alterações.
+          </div>
+          <div class="note ok">
+            Sempre confira os valores de mão de obra e energia antes de cadastrar produtos ou simular preços.
+            Pequenas diferenças nesses campos podem alterar bastante a margem final.
+          </div>
+          <div class="note danger">
+            Use <strong>Desvincular esta instalação</strong> apenas quando for trocar o servidor/computador.
+            Essa ação libera a licença para outra máquina e pode interromper o uso nesta instalação.
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field">
+              <strong>Editar</strong>
+              <span>Ativa o modo de edição para alterar dados cadastrais e parâmetros operacionais.</span>
+            </div>
+            <div class="field">
+              <strong>Cancelar</strong>
+              <span>Descarta alterações não salvas e retorna ao modo de visualização.</span>
+            </div>
+            <div class="field">
+              <strong>Salvar alterações</strong>
+              <span>Grava as alterações da empresa e das configurações operacionais.</span>
+            </div>
+            <div class="field">
+              <strong>Refazer configuração de conexão</strong>
+              <span>Apaga apenas a configuração de conexão com o banco e fecha o sistema. Os cadastros não são apagados.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <p>Ao concluir a rotina com sucesso, o Gestor3D deve exibir uma mensagem confirmando que os dados foram salvos.</p>
+          <ul>
+            <li>Os dados cadastrais passam a aparecer na tela Empresa.</li>
+            <li>Os parâmetros de custo ficam disponíveis para precificação e pedidos.</li>
+            <li>A mão de obra/hora e a tarifa kWh são recalculadas quando seus campos base são informados.</li>
+          </ul>
+        </section>
+
+        <div class="footer">
+          Este é o primeiro manual incorporado ao site. Os demais itens do menu já estão preparados para receber novas rotinas.
+        </div>
+      </article>
+
+      <template id="template-impressoras">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Impressoras</h2>
+          <p>
+            Esta rotina registra as impressoras 3D usadas na operação. As informações cadastradas
+            alimentam a fila de produção, o cálculo de custo por hora, a depreciação e a precificação das peças.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Impressoras</span>
+            <span class="pill">Perfil recomendado: Administrador</span>
+            <span class="pill">Impacta: Produção e Precificação</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Ao cadastrar uma impressora nova ou usada.</li>
+            <li>Quando for atualizar custo/hora, consumo elétrico, status ou área útil.</li>
+            <li>Antes de criar produtos que dependem de tempo de impressão e custo de máquina.</li>
+            <li>Quando o plano/licença permitir novas impressoras e a operação precisar expandir a capacidade.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>
+            A tela fica em <strong>Cadastros &gt; Impressoras</strong>. Clique em
+            <strong>+ Nova Impressora</strong> para abrir o formulário.
+          </p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_impressoras.png" alt="Tela de cadastro de impressoras no Gestor3D"/>
+            <div class="caption">Formulário de nova impressora, com dados técnicos, depreciação e status operacional.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>No menu lateral, abra <strong>Cadastros</strong>.</li>
+            <li>Clique em <strong>Impressoras</strong>.</li>
+            <li>Clique em <strong>+ Nova Impressora</strong>.</li>
+            <li>Informe fabricante, modelo, nome e tipo da impressora.</li>
+            <li>Preencha os dados de depreciação da impressora e do bico, se quiser calcular os custos automaticamente.</li>
+            <li>Informe consumo em Watts, horas de uso iniciais e área útil em milímetros.</li>
+            <li>Defina o status e a data de aquisição.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+
+          <h4>Identificação</h4>
+          <div class="grid">
+            <div class="field"><strong>Fabricante</strong><span>Marca da impressora. O sistema pode sugerir fabricantes já usados.</span></div>
+            <div class="field"><strong>Modelo</strong><span>Modelo comercial ou interno da impressora.</span></div>
+            <div class="field"><strong>Nome *</strong><span>Nome obrigatório para identificar a impressora na produção e nos produtos.</span></div>
+            <div class="field"><strong>Tipo</strong><span>Tipo de tecnologia ou classificação usada pela empresa, como FDM ou Resina.</span></div>
+          </div>
+
+          <h4>Depreciação da Impressora</h4>
+          <div class="grid">
+            <div class="field"><strong>Valor pago</strong><span>Valor de compra usado para calcular o custo de depreciação por hora.</span></div>
+            <div class="field"><strong>Vida útil em horas</strong><span>Estimativa de horas totais de uso da impressora.</span></div>
+            <div class="field"><strong>Custo de depreciação/hora</strong><span>Resultado usado no custo da máquina. Pode ser calculado ou editado manualmente.</span></div>
+          </div>
+          <code class="formula">Depreciação/hora = valor pago / vida útil em horas</code>
+
+          <h4>Depreciação do Bico</h4>
+          <div class="grid">
+            <div class="field"><strong>Valor pago no bico</strong><span>Custo do nozzle/bico instalado ou padrão usado na máquina.</span></div>
+            <div class="field"><strong>Vida útil do bico</strong><span>Estimativa de horas de uso antes da troca.</span></div>
+            <div class="field"><strong>Custo de depreciação do bico/hora</strong><span>Componente adicional de custo aplicado à impressão.</span></div>
+          </div>
+          <code class="formula">Depreciação do bico/hora = valor pago no bico / vida útil do bico</code>
+
+          <h4>Dados Operacionais</h4>
+          <div class="grid">
+            <div class="field"><strong>Consumo (Watts)</strong><span>Potência média usada para calcular energia consumida durante a impressão.</span></div>
+            <div class="field"><strong>Horas de uso iniciais</strong><span>Horas já acumuladas quando a impressora é cadastrada. Use 0 para impressora nova.</span></div>
+            <div class="field"><strong>Área útil (X x Y x Z mm)</strong><span>Volume máximo de impressão em milímetros.</span></div>
+            <div class="field"><strong>Status</strong><span>Situação atual: disponível, imprimindo, manutenção, parada, inativa ou outro status configurado.</span></div>
+            <div class="field"><strong>Data de aquisição</strong><span>Data usada como referência cadastral e histórico do ativo.</span></div>
+            <div class="field"><strong>Observações</strong><span>Campo livre para informações de manutenção, upgrades, restrições ou notas internas.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">O campo <strong>Nome</strong> é obrigatório. Use nomes claros, como "Bambu A1 - Mesa 1" ou "Kobra X - Produção".</div>
+          <div class="note ok">Preencher corretamente custo/hora, consumo e área útil melhora a precisão da precificação e evita escolher uma máquina inadequada para o produto.</div>
+          <div class="note danger">Não exclua uma impressora que já foi usada em produções históricas sem antes avaliar o impacto nos relatórios e no acompanhamento de manutenção.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Nova Impressora</strong><span>Abre o formulário de cadastro.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera uma impressora já cadastrada.</span></div>
+            <div class="field"><strong>Copiar</strong><span>Cria um novo cadastro usando outra impressora como base.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove a impressora selecionada, quando permitido.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>A impressora passa a aparecer nos cards e na grade da tela Impressoras.</li>
+            <li>A máquina fica disponível para produtos, precificação e fila de produção.</li>
+            <li>Os custos por hora informados passam a compor o cálculo de custo das peças.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-clientes">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Clientes</h2>
+          <p>
+            Esta rotina registra os clientes atendidos pela empresa. O cadastro facilita a criação
+            de pedidos, a consulta de contatos e a identificação de clientes ativos ou inativos.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Clientes</span>
+            <span class="pill">Perfil recomendado: Administrador ou Operador</span>
+            <span class="pill">Impacta: Pedidos e Atendimento</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Antes de criar pedidos para um novo cliente.</li>
+            <li>Quando precisar atualizar telefone, e-mail, endereço ou documento.</li>
+            <li>Quando quiser manter histórico de clientes mesmo que eles deixem de comprar.</li>
+            <li>Quando for localizar rapidamente um cliente por nome, CPF/CNPJ ou e-mail.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>
+            A tela fica em <strong>Cadastros &gt; Clientes</strong>. Clique em
+            <strong>+ Novo Cliente</strong> para abrir o formulário de cadastro.
+          </p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_clientes.png" alt="Tela de cadastro de clientes no Gestor3D"/>
+            <div class="caption">Formulário de novo cliente, com dados de contato, endereço, observações e status.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>No menu lateral, abra <strong>Cadastros</strong>.</li>
+            <li>Clique em <strong>Clientes</strong>.</li>
+            <li>Clique em <strong>+ Novo Cliente</strong>.</li>
+            <li>Informe o nome do cliente.</li>
+            <li>Preencha CPF/CNPJ, telefone, e-mail e endereço, quando disponíveis.</li>
+            <li>Use observações para registrar informações úteis de atendimento.</li>
+            <li>Mantenha <strong>Cliente ativo</strong> marcado para clientes em uso.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Campo obrigatório. Identifica o cliente nas consultas e nos pedidos.</span></div>
+            <div class="field"><strong>CPF / CNPJ</strong><span>Documento do cliente. O campo usa máscara de CPF/CNPJ.</span></div>
+            <div class="field"><strong>Telefone</strong><span>Contato telefônico para dúvidas sobre pedido, entrega ou orçamento.</span></div>
+            <div class="field"><strong>E-mail</strong><span>Contato eletrônico do cliente, útil para envio de informações e confirmação de dados.</span></div>
+            <div class="field"><strong>Endereço</strong><span>Endereço principal do cliente, usado como referência de atendimento ou entrega.</span></div>
+            <div class="field"><strong>Observações</strong><span>Campo livre para preferências, restrições, histórico de atendimento ou notas internas.</span></div>
+            <div class="field"><strong>Cliente ativo</strong><span>Indica se o cliente está disponível para uso nas rotinas. Desmarque para inativar sem perder o histórico.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">O campo <strong>Nome</strong> é obrigatório. Sem ele, o cadastro não deve ser salvo.</div>
+          <div class="note ok">Preencha ao menos um contato, como telefone ou e-mail, para facilitar retorno sobre pedidos e orçamentos.</div>
+          <div class="note danger">Prefira inativar clientes antigos em vez de excluir, principalmente se já existirem pedidos vinculados ao cadastro.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Novo Cliente</strong><span>Abre o formulário para cadastrar um novo cliente.</span></div>
+            <div class="field"><strong>Editar</strong><span>Permite alterar o cliente selecionado na grade.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove o cliente selecionado, quando permitido.</span></div>
+            <div class="field"><strong>Buscar</strong><span>Filtra a grade por nome, CPF/CNPJ ou e-mail.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>O cliente passa a aparecer na grade da tela Clientes.</li>
+            <li>O cadastro fica disponível para seleção em pedidos.</li>
+            <li>Clientes ativos aparecem com status <strong>Ativo</strong>; clientes desmarcados aparecem como <strong>Inativo</strong>.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-categorias">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Categorias</h2>
+          <p>
+            Esta rotina organiza os produtos por grupos, facilitando filtros, relatórios e análises de venda por tipo de produto.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Categorias</span>
+            <span class="pill">Impacta: Produtos e Relatórios</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Antes de cadastrar produtos que precisam ser agrupados por tipo.</li>
+            <li>Quando quiser separar linhas como decoração, utilidades, personalizados, reposição ou miniaturas.</li>
+            <li>Quando precisar melhorar relatórios de venda por categoria.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>Acesse <strong>Cadastros &gt; Categorias</strong> e clique em <strong>+ Nova Categoria</strong>.</p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_categorias.png" alt="Tela de cadastro de categorias no Gestor3D"/>
+            <div class="caption">Formulário de nova categoria, com nome, descrição e status ativo.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Abra <strong>Cadastros</strong> no menu lateral.</li>
+            <li>Clique em <strong>Categorias</strong>.</li>
+            <li>Clique em <strong>+ Nova Categoria</strong>.</li>
+            <li>Informe o nome da categoria.</li>
+            <li>Preencha a descrição, se necessário.</li>
+            <li>Mantenha <strong>Categoria ativa</strong> marcada para usar em produtos.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Campo obrigatório. Nome do grupo usado para classificar produtos.</span></div>
+            <div class="field"><strong>Descrição</strong><span>Texto livre para explicar o tipo de produto incluído na categoria.</span></div>
+            <div class="field"><strong>Categoria ativa</strong><span>Indica se a categoria está disponível para uso nos cadastros.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">Evite categorias muito parecidas, como "Bonecos" e "Bonequinhos", para não dividir relatórios desnecessariamente.</div>
+          <div class="note ok">Use nomes curtos e fáceis de identificar na rotina de produtos.</div>
+          <div class="note danger">Prefira inativar categorias antigas em vez de excluir categorias já usadas por produtos.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Nova Categoria</strong><span>Abre o formulário de cadastro.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera a categoria selecionada.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove a categoria selecionada, quando permitido.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>A categoria aparece na grade de Categorias.</li>
+            <li>A categoria ativa fica disponível no cadastro de produtos.</li>
+            <li>Vendas e produtos podem ser analisados por esse agrupamento.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-usuarios">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Usuários</h2>
+          <p>
+            Esta rotina controla quem pode acessar o Gestor3D e qual perfil de permissão cada pessoa terá no sistema.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Usuários</span>
+            <span class="pill">Perfil recomendado: Administrador</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Ao criar acesso para um novo operador, financeiro ou administrador.</li>
+            <li>Quando precisar trocar o perfil de acesso de alguém.</li>
+            <li>Quando precisar inativar um usuário que não deve mais entrar no sistema.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>Acesse <strong>Cadastros &gt; Usuários</strong> e clique em <strong>+ Novo Usuário</strong>.</p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_usuarios.png" alt="Tela de cadastro de usuários no Gestor3D"/>
+            <div class="caption">Formulário de novo usuário, com perfil, senha e status ativo.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Abra <strong>Cadastros</strong> no menu lateral.</li>
+            <li>Clique em <strong>Usuários</strong>.</li>
+            <li>Clique em <strong>+ Novo Usuário</strong>.</li>
+            <li>Informe nome e e-mail.</li>
+            <li>Selecione o perfil de acesso.</li>
+            <li>Digite a senha e confirme a senha.</li>
+            <li>Marque <strong>Usuário ativo</strong> se ele já deve acessar o sistema.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Nome usado para identificar o usuário no sistema.</span></div>
+            <div class="field"><strong>E-mail *</strong><span>E-mail vinculado ao usuário.</span></div>
+            <div class="field"><strong>Perfil *</strong><span>Define permissões: Administrador, Operador, Financeiro ou Produção.</span></div>
+            <div class="field"><strong>Senha *</strong><span>Senha inicial do usuário. Em edição, preencher apenas se quiser alterar.</span></div>
+            <div class="field"><strong>Confirmar senha</strong><span>Repete a senha para evitar erro de digitação.</span></div>
+            <div class="field"><strong>Usuário ativo</strong><span>Controla se o usuário pode acessar o sistema.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">Escolha o perfil com cuidado. Administrador tem acesso total ao sistema.</div>
+          <div class="note ok">Use a inativação para bloquear acesso sem perder histórico de ações associadas ao usuário.</div>
+          <div class="note danger">Não compartilhe usuários entre pessoas diferentes. Cada pessoa deve ter seu próprio acesso.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Novo Usuário</strong><span>Abre o formulário de cadastro.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera dados, perfil, senha ou status.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove o usuário selecionado, quando permitido.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>O usuário aparece na grade de Usuários.</li>
+            <li>Usuários ativos podem acessar o Gestor3D com o perfil selecionado.</li>
+            <li>Usuários inativos permanecem cadastrados, mas não devem ser usados para acesso.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-marketplaces">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Marketplaces</h2>
+          <p>
+            Esta rotina cadastra canais de venda e suas taxas, permitindo calcular custos de comissão na precificação e nos pedidos.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Marketplaces</span>
+            <span class="pill">Impacta: Precificação e Pedidos</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Antes de vender por canais como Shopee, Mercado Livre, Etsy ou loja própria.</li>
+            <li>Quando o canal tiver comissão percentual sobre a venda.</li>
+            <li>Quando houver uma taxa fixa por pedido ou anúncio.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>Acesse <strong>Cadastros &gt; Marketplaces</strong> e clique em <strong>+ Novo Marketplace</strong>.</p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_marketplaces.png" alt="Tela de cadastro de marketplaces no Gestor3D"/>
+            <div class="caption">Formulário de marketplace, com taxa percentual, taxa fixa e status ativo.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Abra <strong>Cadastros</strong> no menu lateral.</li>
+            <li>Clique em <strong>Marketplaces</strong>.</li>
+            <li>Clique em <strong>+ Novo Marketplace</strong>.</li>
+            <li>Informe o nome do canal de venda.</li>
+            <li>Informe a taxa percentual, se existir.</li>
+            <li>Informe a taxa fixa em reais, se existir.</li>
+            <li>Adicione observações sobre regras do canal.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Nome do canal de venda.</span></div>
+            <div class="field"><strong>Taxa percentual (%)</strong><span>Percentual cobrado sobre o valor da venda. Exemplo: 12 significa 12%.</span></div>
+            <div class="field"><strong>Taxa fixa (R$)</strong><span>Valor fixo cobrado por venda, pedido ou anúncio.</span></div>
+            <div class="field"><strong>Observações</strong><span>Notas sobre regras, categorias, campanhas ou condições do canal.</span></div>
+            <div class="field"><strong>Marketplace ativo</strong><span>Indica se o canal está disponível para uso.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">Cadastre taxa percentual como número, sem o símbolo %. Exemplo: use 12 para 12%.</div>
+          <div class="note ok">Revise taxas sempre que o marketplace alterar regras, pois isso impacta diretamente lucro e preço sugerido.</div>
+          <div class="note danger">Taxas erradas podem fazer produtos aparentemente lucrativos venderem com prejuízo.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Novo Marketplace</strong><span>Abre o formulário de cadastro.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera taxas, observações ou status.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove o canal selecionado, quando permitido.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>O marketplace aparece na grade de canais.</li>
+            <li>O canal fica disponível para seleção em precificação e pedidos.</li>
+            <li>As taxas passam a compor o cálculo de custo comercial.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-fornecedores">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Fornecedores</h2>
+          <p>
+            Esta rotina registra fornecedores de materiais e insumos, incluindo contatos e prazo médio de recebimento.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Fornecedores</span>
+            <span class="pill">Impacta: Entrada de Materiais</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Antes de registrar compras recorrentes de materiais.</li>
+            <li>Quando quiser controlar contatos de fornecedores.</li>
+            <li>Quando precisar informar lead time padrão para reposição de estoque.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>Acesse <strong>Cadastros &gt; Fornecedores</strong> e clique em <strong>+ Novo Fornecedor</strong>.</p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_fornecedores.png" alt="Tela de cadastro de fornecedores no Gestor3D"/>
+            <div class="caption">Formulário de fornecedor, com documento, contato e lead time padrão.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Abra <strong>Cadastros</strong> no menu lateral.</li>
+            <li>Clique em <strong>Fornecedores</strong>.</li>
+            <li>Clique em <strong>+ Novo Fornecedor</strong>.</li>
+            <li>Informe o nome do fornecedor.</li>
+            <li>Preencha CPF/CNPJ, e-mail e telefone, quando disponíveis.</li>
+            <li>Informe o lead time padrão em dias.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Nome do fornecedor.</span></div>
+            <div class="field"><strong>CPF / CNPJ</strong><span>Documento do fornecedor, com máscara de CPF/CNPJ.</span></div>
+            <div class="field"><strong>E-mail</strong><span>Contato eletrônico do fornecedor.</span></div>
+            <div class="field"><strong>Telefone</strong><span>Contato telefônico do fornecedor.</span></div>
+            <div class="field"><strong>Lead time padrão (dias) *</strong><span>Tempo médio entre fazer o pedido e receber o material.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">O lead time ajuda a planejar reposição. Informe um prazo realista, em dias.</div>
+          <div class="note ok">Cadastre contatos completos para facilitar novas compras e negociação de materiais.</div>
+          <div class="note danger">Evite excluir fornecedores com histórico de compras. Use desativação quando o fornecedor não for mais usado.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Novo Fornecedor</strong><span>Abre o formulário de cadastro.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera dados do fornecedor.</span></div>
+            <div class="field"><strong>Desativar</strong><span>Inativa o fornecedor selecionado.</span></div>
+            <div class="field"><strong>Vincular Material</strong><span>Relaciona o fornecedor a materiais/insumos.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>O fornecedor aparece na grade de Fornecedores.</li>
+            <li>O fornecedor fica disponível para rotinas de entrada de materiais.</li>
+            <li>O lead time pode apoiar planejamento de reposição.</li>
+          </ul>
+        </section>
+      </template>
+
+      <template id="template-materiais">
+        <section class="hero">
+          <div class="eyebrow">Cadastros</div>
+          <h2>Cadastro de Materiais</h2>
+          <p>
+            Esta rotina cadastra os insumos usados pela operação: filamentos, resinas, embalagens,
+            componentes e outros materiais que entram no custo, estoque e produção.
+          </p>
+          <div class="meta">
+            <span class="pill">Módulo: Cadastros</span>
+            <span class="pill">Tela: Materiais</span>
+            <span class="pill">Perfil recomendado: Administrador ou Operador</span>
+            <span class="pill">Impacta: Estoque, Produtos e Produção</span>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Quando Usar</h3>
+          <ul>
+            <li>Antes de registrar entrada de estoque de um novo material.</li>
+            <li>Antes de montar a composição de um produto.</li>
+            <li>Quando precisar controlar estoque mínimo por insumo.</li>
+            <li>Quando diferenciar materiais imprimíveis de insumos auxiliares, como embalagens ou componentes.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>Visão da Tela</h3>
+          <p>
+            A tela fica em <strong>Cadastros &gt; Materiais</strong>. Clique em
+            <strong>+ Novo Insumo</strong> para abrir o formulário.
+          </p>
+          <div class="screenshot">
+            <img src="imagens/cadastro_materiais.png" alt="Tela de cadastro de materiais no Gestor3D"/>
+            <div class="caption">Formulário de novo material/insumo, com tipo, unidade, estoque mínimo e classificação como imprimível.</div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>No menu lateral, abra <strong>Cadastros</strong>.</li>
+            <li>Clique em <strong>Materiais</strong>.</li>
+            <li>Clique em <strong>+ Novo Insumo</strong>.</li>
+            <li>Informe o nome do material.</li>
+            <li>Selecione o tipo e a unidade de medida.</li>
+            <li>Preencha cor, marca, estoque mínimo e observações, se necessário.</li>
+            <li>Marque <strong>Material imprimível</strong> apenas para materiais usados diretamente na impressora.</li>
+            <li>Clique em <strong>Salvar</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h3>Campos da Rotina</h3>
+          <div class="grid">
+            <div class="field"><strong>Nome *</strong><span>Nome obrigatório do insumo. Pode usar sugestões de nomes já utilizados.</span></div>
+            <div class="field"><strong>Tipo *</strong><span>Classificação do material, como filamento, resina, embalagem ou outro insumo.</span></div>
+            <div class="field"><strong>Unidade de medida *</strong><span>Unidade usada no estoque e consumo, como g, kg, un, ml ou l.</span></div>
+            <div class="field"><strong>Cor</strong><span>Cor do material, útil para filamentos, resinas e itens visuais.</span></div>
+            <div class="field"><strong>Marca</strong><span>Fabricante ou marca comercial. Pode usar sugestões de marcas já cadastradas.</span></div>
+            <div class="field"><strong>Estoque mínimo</strong><span>Quantidade mínima desejada. Quando o saldo fica abaixo desse valor, o material aparece como crítico.</span></div>
+            <div class="field"><strong>Observações</strong><span>Informações livres sobre lote, fornecedor preferencial, uso recomendado ou restrições.</span></div>
+            <div class="field"><strong>Material imprimível</strong><span>Indica se o material entra diretamente na impressora, como PLA, ABS, PETG ou resina.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Cuidados Antes de Salvar</h3>
+          <div class="note">Nome, tipo e unidade de medida são campos obrigatórios para manter o estoque consistente.</div>
+          <div class="note ok">Use a unidade de medida do jeito que o material será consumido nos produtos. Para filamento, normalmente gramas facilitam o cálculo por peça.</div>
+          <div class="note danger">Não marque embalagens, parafusos, componentes eletrônicos ou itens de acabamento como material imprimível. Essa marcação deve ficar reservada aos materiais que entram na impressora.</div>
+        </section>
+
+        <section class="section">
+          <h3>Ações Disponíveis</h3>
+          <div class="grid">
+            <div class="field"><strong>+ Novo Insumo</strong><span>Abre o formulário para cadastrar material.</span></div>
+            <div class="field"><strong>Entrada</strong><span>Registra compra/entrada de estoque para o material selecionado.</span></div>
+            <div class="field"><strong>Editar</strong><span>Altera o cadastro do material selecionado.</span></div>
+            <div class="field"><strong>Excluir</strong><span>Remove o material selecionado, quando permitido.</span></div>
+          </div>
+        </section>
+
+        <section class="section panel">
+          <h3>Resultado Esperado</h3>
+          <ul>
+            <li>O material passa a aparecer na grade de Materiais.</li>
+            <li>O insumo fica disponível para entrada de estoque e composição de produtos.</li>
+            <li>O estoque mínimo passa a alimentar o alerta de materiais críticos.</li>
+          </ul>
+        </section>
+      </template>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

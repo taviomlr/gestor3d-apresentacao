@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor3D - Apresentação e Manual</title>
+  <style>
+    :root {
+      --bg: #1E1B2E;
+      --panel: #2D2B45;
+      --card: #3D3A5C;
+      --primary: #7B4FD4;
+      --secondary: #3B82F6;
+      --accent: #5BB8F5;
+      --text: #F0EEFF;
+      --muted: #A89EC4;
+      --line: #4D4970;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      padding: 44px 0;
+    }
+
+    header {
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 0 22px rgba(123, 79, 212, .45));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      margin: 12px auto 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color .18s, transform .18s, background .18s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: #332F4E;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      font-size: 22px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .card span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .cta {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img class="logo" src="apresentacao/screenshots/logo_sistema.png" alt="Gestor3D"/>
+      <h1>Gestor3D</h1>
+      <p>Materiais organizados para apresentação comercial e consulta operacional do sistema.</p>
+    </header>
+
+    <section class="cards" aria-label="Materiais disponíveis">
+      <a class="card" href="apresentacao/">
+        <div>
+          <div class="icon">AP</div>
+          <h2>Apresentação</h2>
+          <span>Material visual para demonstrar módulos, telas, diferenciais e próximos passos do Gestor3D.</span>
+        </div>
+        <div class="cta">Abrir apresentação</div>
+      </a>
+
+      <a class="card" href="manual/">
+        <div>
+          <div class="icon">MU</div>
+          <h2>Manual de Uso</h2>
+          <span>Site de documentação operacional com rotinas organizadas por segmento e passo a passo.</span>
+        </div>
+        <div class="cta">Abrir manual</div>
+      </a>
+    </section>
+
+    <footer>
+      Publicação local pronta para GitHub Pages.
+    </footer>
+  </main>
+</body>
+</html>
